@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class TableViewCell: UITableViewCell {
 
@@ -35,18 +36,7 @@ class TableViewCell: UITableViewCell {
         speciesLabel.text = data.species
         genderLabel.text = data.gender
         
-        URLSession.shared.dataTask(with: URLRequest(url: URL(string: "https://rickandmortyapi.com/api/character/avatar/2.jpeg")!)){
-            (data,_,error) in
-            do{
-               let datas = try data
-                DispatchQueue.main.async {
-                    self.mImage.image = UIImage(data: datas!)
-                }
-            }catch{
-                
-            }
-        }.resume()
-        
+        mImage.kf.setImage(with: URL(string: data.image))
     }
 }
  
